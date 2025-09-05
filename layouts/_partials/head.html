@@ -1,0 +1,122 @@
+{{/*
+  Hugo Partial Template: head.html
+  For Agile Paradigm Technology Consulting Wiki
+  This template should be included in your baseof.html or other primary layout files like so: `{{ partial "head.html" . }}`
+*/}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+  Page Title: Combines the page's title with the site's overall title for clarity and SEO.
+  Example: Explanation: The Shift to Multi-Cluster Ingress... | Agile Paradigm Wiki
+-->
+<title>{{ .Title }} | {{ .Site.Title }}</title>
+
+<!-- 
+  Primary Meta Tags for SEO
+  - Description: Pulled from the page's front matter.
+  - Keywords: Generated from the 'tags' array in the front matter.
+  - Author: Pulled from the 'author' field.
+-->
+{{- with .Description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+{{- with .Params.tags }}
+<meta name="keywords" content="{{ delimit . ", " }}">
+{{- end }}
+{{- with .Params.author }}
+<meta name="author" content="{{ . }}">
+{{- end }}
+
+<!-- 
+  Canonical URL
+  Helps prevent duplicate content issues by specifying the "canonical" or "preferred" version of a page.
+-->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- 
+  Open Graph (OG) Tags for Social Media Sharing (Facebook, LinkedIn, etc.)
+  Provides rich object data when the URL is shared.
+-->
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Description }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{- with .Params.image }}
+<meta property="og:image" content="{{ . | absURL }}">
+{{- else }}
+<!-- Fallback OG image if not specified in front matter -->
+<meta property="og:image" content="{{ "images/og-default.jpg" | absURL }}"> 
+{{- end }}
+
+<!-- 
+  Twitter Card Tags
+  Specifies how the page should appear when shared on Twitter.
+-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ .Description }}">
+{{- with .Params.image }}
+<meta name="twitter:image" content="{{ . | absURL }}">
+{{- else }}
+<!-- Fallback Twitter image if not specified in front matter -->
+<meta name="twitter:image" content="{{ "images/og-default.jpg" | absURL }}">
+{{- end }}
+
+<!-- 
+  Favicon Links
+  - Add your favicon files to the `static/` directory of your Hugo site.
+-->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- 
+  Stylesheet Link
+  - Assumes you have a main stylesheet located at `assets/css/main.css`.
+  - Hugo Pipes will process this file. Updated for Hugo v0.119.0+
+-->
+{{/*
+{{ $style := resources.Get "css/main.css" | resources.PostCSS }}
+{{ if not hugo.IsServer }}
+  {{ $style = $style | minify | fingerprint }}
+{{ end }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" {{ if not hugo.IsServer }}integrity="{{ $style.Data.Integrity }}"{{ end }}>
+*/}}
+
+<!-- 
+  Structured Data (JSON-LD) for Rich Snippets in Search Results
+  Provides detailed information to search engines to help them understand the content.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Params.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agile Paradigm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ "images/logo.png" | absURL }}"
+    }
+  },
+  {{- with .Params.tags -}}
+  "keywords": "{{ delimit . ", " }}",
+  {{- end -}}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+

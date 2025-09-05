@@ -1,3 +1,38 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Agile Paradigm Wiki'
+#theme = 'hextra'
+
+[module]
+  [[module.imports]]
+    path = 'github.com/imfing/hextra'
+
+# Main menu configuration to reflect the Diátaxis framework
+[[menu.main]]
+  name = "Tutorials"
+  pageRef = "/tutorials"
+  weight = 1
+
+[[menu.main]]
+  name = "How-To Guides"
+  pageRef = "/how-to"
+  weight = 2
+
+[[menu.main]]
+  name = "Explanation"
+  pageRef = "/explanation"
+  weight = 3
+
+[[menu.main]]
+  name = "Reference"
+  pageRef = "/reference"
+  weight = 4
+
+#[params]
+  # Hextra theme specific configurations
+#  [params.navbar]
+#    displayTitle = true
+#    displayLogo = false
+#  [params.footer]
+#    displayCopyright = true
+#    displayPoweredBy = true

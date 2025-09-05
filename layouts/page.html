@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <!-- Render the badge using the partial -->
+  {{ partial "diataxis-badge.html" . }}
+
+  <!-- Render the main content of the markdown file -->
+  <article class="prose dark:prose-invert max-w-full">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+  </article>
+{{ end }}

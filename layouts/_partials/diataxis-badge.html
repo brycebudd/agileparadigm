@@ -1,0 +1,19 @@
+{{ with .Params.type }}
+  {{ $type := lower . }}
+  {{ $color := "" }}
+  {{ if eq $type "tutorial" }}
+    {{ $color = "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200" }}
+  {{ else if eq $type "how-to-guide" }}
+    {{ $color = "bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200" }}
+  {{ else if eq $type "explanation" }}
+    {{ $color = "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200" }}
+  {{ else if eq $type "reference" }}
+    {{ $color = "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200" }}
+  {{ end }}
+
+  <div class="mb-4">
+    <span class="rounded-full px-3 py-1 text-sm font-semibold {{ $color }}">
+      {{ . | upper }}
+    </span>
+  </div>
+{{ end }}
