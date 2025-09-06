@@ -1,7 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'Agile Paradigm Wiki'
-#theme = 'hextra'
+theme = 'hextra'
 
 [module]
   [[module.imports]]
@@ -28,11 +28,28 @@ title = 'Agile Paradigm Wiki'
   pageRef = "/reference"
   weight = 4
 
-#[params]
-  # Hextra theme specific configurations
-#  [params.navbar]
-#    displayTitle = true
-#    displayLogo = false
-#  [params.footer]
-#    displayCopyright = true
-#    displayPoweredBy = true
+[[menu.main]]
+  name = "Search"
+  weight = 5
+[menu.main.params]
+  type = 'search'
+
+enableGitInfo = true
+
+[params]
+  displayUpdatedDate = true
+  dateFormat = 'January 2, 2006'
+  externalLinkDecoration = true
+[params.toc]
+  displayTags = true
+[params.navbar]
+  displayTitle = false
+  displayLogo = true 
+[params.navbar.logo]
+  path = 'logo.png'
+  link = '/'
+  width = 180
+  height = 30
+[params.footer]
+  displayCopyright = true
+  displayPoweredBy = false

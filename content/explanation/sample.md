@@ -1,20 +1,20 @@
 +++
-title = "Explanation: The Shift to Multi-Cluster Ingress for Global Application Resiliency"
+title = "The Shift to Multi-Cluster Ingress for Global Application Resiliency"
 date = 2025-08-30
 author = "A. Principal Engineer"
 description = "An architectural explanation of why and how we use Multi-Cluster Ingress (MCI) on GKE to achieve global routing and high availability."
 tags = ["gke", "kubernetes", "architecture", "explanation", "networking", "mci"]
-type = "explanation"
+type = "docs"
 +++
 
-# The Core Concept: Beyond a Single Point of Failure
+## The Core Concept: Beyond a Single Point of Failure
 <!-- (Kent Beck's Style) Frame the problem in human terms. We aren't just solving a technical problem; we're protecting our users and our on-call engineers from outages. -->
 
 For years, our standard has been a single, regional GKE cluster serving traffic. This model is simple, but it carries a silent, significant risk: a full regional outage, whether from a GCP incident or a failed deployment, takes our entire application offline. This not only impacts our users but also places an immense burden on the on-call team during a crisis.
 
 The move to a multi-cluster architecture, orchestrated by Multi-Cluster Ingress (MCI), is our answer to this problem. It represents a fundamental shift from treating a cluster as a pet to treating our application as a single, globally resilient entity. This document explains the architecture, the trade-offs, and the principles behind this powerful pattern.
 
-# How Multi-Cluster Ingress Works: A Mental Model
+## How Multi-Cluster Ingress Works: A Mental Model
 <!-- (Gregor Hohpe's Style) Use a structured, pattern-based explanation with diagrams to create a clear mental model of the system. -->
 
 At its heart, Multi-Cluster Ingress is a control plane that programs the **Google Cloud External HTTP(S) Load Balancer** to route traffic to services running in multiple GKE clusters across different regions. It is not a data plane itself; the actual traffic flows through Google's battle-tested global network edge.
@@ -35,7 +35,7 @@ The flow is as follows:
 
 6. User traffic hits a single global Anycast IP address, is routed to the nearest healthy Google Front End (GFE), and then directed to the closest, healthiest GKE cluster with available capacity.
 
-# Key Principles and Trade-offs
+## Key Principles and Trade-offs
 <!-- (Martin Fowler's Style) Be pragmatic. This isn't magic. Discuss the real-world trade-offs and nuances. -->
 
 Adopting MCI is not free. It introduces new complexities that we must manage deliberately.
