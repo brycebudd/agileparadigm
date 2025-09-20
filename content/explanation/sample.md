@@ -4,7 +4,6 @@ date = 2025-08-30
 author = "A. Principal Engineer"
 description = "An architectural explanation of why and how we use Multi-Cluster Ingress (MCI) on GKE to achieve global routing and high availability."
 tags = ["gke", "kubernetes", "architecture", "explanation", "networking", "mci"]
-type = "docs"
 +++
 
 ## The Core Concept: Beyond a Single Point of Failure

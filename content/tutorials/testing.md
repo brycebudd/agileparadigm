@@ -1,7 +1,6 @@
 +++
 date = '2025-09-05T16:45:49-07:00'
 title = 'Testing'
-type = 'docs'
 tags = ['testing', 'content', 'management']
 +++
 
@@ -33,7 +32,9 @@ tags = ['testing', 'content', 'management']
 
 ### Sub-Header 1
 thisojdaflklf a dflkjl k fjdlfj lkasjf
+
 ```bash
+# Pastable bash command
 kubectl apply -f -<<EOF
 apiVersion: v1
 kind: Service
@@ -46,11 +47,18 @@ spec:
     - protocol: TCP
       port: 80 # The port on which the Service is exposed
       targetPort: 8080 # The port on which the Pods are listening
-  type: ClusterIP # Default type, accessible only within the cluster
+  type: ClusterIP # Default type, accessible only within these cluster
 EOF
-````
+```
 ### Sub-Header 2
 lkfsdaj l  l
+
+```yaml {filename="secret.yaml"}
+apiVersion: v1
+kind: Secret
+spec:
+  data: this is an example
+```
 
 ### Sub-Header 3
  lkjdlfajlj

@@ -36,6 +36,10 @@ theme = 'hextra'
 
 enableGitInfo = true
 
+[markup.highlight]
+noClasses = false
+guessSyntax = true
+
 [params]
   displayUpdatedDate = true
   dateFormat = 'January 2, 2006'
